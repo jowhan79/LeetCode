@@ -1,6 +1,6 @@
 # 476. Number Complement
 
-## 題目敘述:
+## 題目敘述
 
 Given a positive integer, output its complement number. The complement strategy is to flip the bits of its binary representation.
 
@@ -22,7 +22,7 @@ Output: 0
 Explanation: The binary representation of 1 is 1 (no leading zero bits), and its complement is 0. So you need to output 0.
 ```
 
-## 解題想法:
+## 解題想法
 
 1. 使用~num可以直接反轉整數的所有bits，但是題目要求不可算入前導0位元，因此不可直接使用NOT。
 2. 如果能將給予整數的前導0位元全變成1那就可以直接使用NOT求得答案。
