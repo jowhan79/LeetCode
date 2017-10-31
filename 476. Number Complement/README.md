@@ -52,4 +52,21 @@ Explanation: The binary representation of 1 is 1 (no leading zero bits), and its
 5. 找出i的方法使用迴圈逐一確認[輸入]是否小於2^i，成立即可得i。
 6. 最後對此負數取NOT即為答案。
 
+## 程式碼(C)
+```c
+int findComplement(int num){
+    int i, neg;
+
+    if(num==0) return 1;
+    
+    // find 2's base
+    for( i=0; num>=(1<<i) && i<31 ; ++i );
+    
+    // transfer to negative
+    neg = num - (1<<i);
+    
+    return ~neg;    
+}
+```
+
 
