@@ -1,4 +1,4 @@
-% 2017/11/02 Peony
+# 2017/11/02 Peony
 class Solution {
 public:
     vector<string> findWords(vector<string>& words) {
