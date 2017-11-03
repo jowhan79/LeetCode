@@ -9,7 +9,7 @@ char** findWords(char** words, int wordsSize, int* returnSize) {
     }   
     
     char temp;
-    int row, now_row, i, j, max_j=0, max_i=0;
+    int row, now_row, i, j, max_i=0;
     char islegal[wordsSize];
     char** ans=NULL;
 
@@ -55,9 +55,6 @@ char** findWords(char** words, int wordsSize, int* returnSize) {
                     now_row = 3;
                     break;
             }
-            if( j>max_j ){
-                max_j = j;
-            }
             if( row==0 ){
                 row = now_row;
             }
@@ -68,7 +65,6 @@ char** findWords(char** words, int wordsSize, int* returnSize) {
         }
     }
 
-    max_j += 2;  
     for( i=0; i<wordsSize; ++i ){
         if( islegal[i] )    max_i++; 
     }
@@ -81,8 +77,6 @@ char** findWords(char** words, int wordsSize, int* returnSize) {
 
     // prepare for return
     ans = (char**)malloc(sizeof(char*)*max_i);
-    for( i=0; i<max_i; ++i )
-        ans[i] = (char*)malloc(sizeof(char)*max_j);
 
     for( i=0,j=0 ; i<wordsSize; ++i ){
         if( islegal[i] ){
