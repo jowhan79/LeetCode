@@ -7,7 +7,7 @@ int maxSubArray(int* nums, int numsSize) {
     int max_sum[numsSize], i, max_ans;
     
     // record the sum of all values
-    // reset if previous sum + next single value < next single value
+    // reset if previous sum < 0
     max_sum[0] = max_ans = nums[0];
     for( i=1; i<numsSize; ++i ){
         if( max_sum[i-1]<0 ){
