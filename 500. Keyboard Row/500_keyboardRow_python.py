@@ -1,31 +1,24 @@
 # 2017/11/02 Peony
-class Solution {
-public:
-    vector<string> findWords(vector<string>& words) {
-        vector<string> result;
-        vector<string>::iterator item;
-        vector<int> table = {1,2,2,1,0,1,1,1,0,1,1,1,2,2,0,0,0,0,1,0,0,2,0,2,0,2};
-        vector<int> tcount;
-        result.clear();
-       
-        for(int i = 0; i<words.size(); i++){
-            string word = words[i];
-            tcount.clear();
-            for(int j = 0; j < word.size(); j++){
-                if(islower(word[j])){
-                    tcount.push_back(table[word[j]-'a']);
-                }else{
-                    tcount.push_back(table[word[j]-'A']);
-                }
-            }
-            
-            if((unique(tcount.begin(), tcount.end()) - tcount.begin())==1){
-                result.push_back(word);
-            }
-        }
+class Solution(object):
+    def findWords(self, words):
+        """
+        :type words: List[str]
+        :rtype: List[str]
+        """
+        result = []
+        tableList = {0:"qwertyuiop", 1:"asdfghjkl", 2:"zxcvbnm"}
         
+        for i in words:
+            t = []
+            for ch in i:
+                if ch.lower() in tableList[0]:
+                    t.append(0)
+                elif ch.lower() in tableList[1]:
+                    t.append(1)
+                elif ch.lower() in tableList[2]:
+                    t.append(2)
+            if len(set(t)) == 1:
+                result.append(i)
+                    
         
-        return result;    
-    }
-    
-};
+        return result
