@@ -2,6 +2,7 @@
 
 #ifndef MAX(X,Y)
 #define MAX(X,Y) (((X)>(Y))?(X):(Y))
+#endif
 
 int findLength(int* A, int ASize, int* B, int BSize) {
     /**************************************************
