@@ -24,10 +24,10 @@ char* longestPalindrome_v1(char* s){
         }
     }
     
-    char *ans = (char*)malloc((max_tail-max_head+1)*sizeof(char));
+    char *ans = (char*)malloc((max_tail-max_head+2)*sizeof(char));
     for(i=max_head; i<max_tail+1; i++){
         ans[i-max_head] = s[i];
-    } ans[i-max_head] = '\0';
+    } ans[max_tail-max_head+1] = '\0';
     return ans;
     
 }
