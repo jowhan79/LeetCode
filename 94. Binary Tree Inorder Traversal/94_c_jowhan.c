@@ -45,20 +45,17 @@ inline int* _inorderTraversal_sol1(struct TreeNode* root, int* returnSize){
 /********************** solution 2 **********************/
 // iteratively
 // use stack to record traveled nodes
-// 註: 不知道為什麼寫成function就沒有辦法過了，雖然星星很多但應該沒問題才對...
 
-/*inline void __pushStack(struct TreeNode ***nodeStack, int *nodeStackSize, struct TreeNode *ptr){
-    printf("%u->%u, %d\n",nodeStack,*nodeStack,*nodeStackSize);
+inline void __pushStack(struct TreeNode ***nodeStack, int *nodeStackSize, struct TreeNode *ptr){
     *nodeStack = realloc(*nodeStack,sizeof(struct TreeNode*)*(++*nodeStackSize));
-    printf("%u->%u, %d\n\n",nodeStack,*nodeStack,*nodeStackSize);
-    *nodeStack[*nodeStackSize-1] = ptr;
+    (*nodeStack)[*nodeStackSize-1] = ptr;
 }
 
 inline struct TreeNode* __popStack(struct TreeNode ***nodeStack, int *nodeStackSize){
-    struct TreeNode* temp=*nodeStack[*nodeStackSize-1];
+    struct TreeNode* temp=(*nodeStack)[*nodeStackSize-1];
     *nodeStack = realloc(*nodeStack,sizeof(struct TreeNode*)*(--*nodeStackSize));
     return temp;
-}*/
+}
 
 inline int* _inorderTraversal_sol2(struct TreeNode* root, int* returnSize){
     struct TreeNode **nodeStack=NULL;
@@ -71,18 +68,14 @@ inline int* _inorderTraversal_sol2(struct TreeNode* root, int* returnSize){
     do{
         // travel left node, push node into stack
         while( ptr!=NULL ){            
-            //__pushStack(&nodeStack, &nodeStackSize, ptr);
-            nodeStack = realloc(nodeStack,sizeof(struct TreeNode*)*(++nodeStackSize));
-            nodeStack[nodeStackSize-1] = ptr;
+            __pushStack(&nodeStack, &nodeStackSize, ptr);
             
             ptr = ptr->left;
         }
 
         // end of left node, start pop node from stack
         if( nodeStackSize>0 ){            
-            //ptr = __popStack(&nodeStack, &nodeStackSize);
-            ptr = nodeStack[nodeStackSize-1];
-            nodeStack = realloc(nodeStack,sizeof(struct TreeNode*)*(--nodeStackSize));
+            ptr = __popStack(&nodeStack, &nodeStackSize);
             
             returnArray = realloc(returnArray,sizeof(int)*(++*returnSize));
             returnArray[*returnSize-1] = ptr->val;
